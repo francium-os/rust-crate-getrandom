@@ -37,6 +37,8 @@ cfg_if! {
         use __errno as errno_location;
     } else if #[cfg(target_os = "aix")] {
         use libc::_Errno as errno_location;
+    } else if #[cfg(target_os = "francium")] {
+	use libc::__errno_location as errno_location;
     }
 }
 

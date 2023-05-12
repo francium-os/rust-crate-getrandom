@@ -278,6 +278,9 @@ cfg_if! {
                         any(target_arch = "wasm32", target_arch = "wasm64"),
                         target_os = "unknown"))] {
         #[path = "js.rs"] mod imp;
+    } else if #[cfg(target_os = "francium")] {
+        mod util_libc;
+        #[path = "francium.rs"] mod imp;
     } else if #[cfg(feature = "custom")] {
         use custom as imp;
     } else if #[cfg(all(any(target_arch = "wasm32", target_arch = "wasm64"),
